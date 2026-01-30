@@ -32,7 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     (email) =>
                       `<li class="participant-item"><span class="participant-avatar">${email
                         .charAt(0)
-                        .toUpperCase()}</span><span class="participant-email">${email}</span></li>`
+                        .toUpperCase()}</span><span class="participant-email">${email}</span><button class="delete-participant" title="Remove participant" data-activity="${encodeURIComponent(
+                        name
+                      )}" data-email="${encodeURIComponent(
+                        email
+                      )}">&#128465;</button></li>`
                   )
                   .join("")}
               </ul>
@@ -61,6 +65,30 @@ document.addEventListener("DOMContentLoaded", () => {
         option.value = name;
         option.textContent = name;
         activitySelect.appendChild(option);
+      });
+
+      // Add event listeners for delete buttons
+      document.querySelectorAll(".delete-participant").forEach((btn) => {
+        btn.addEventListener("click", async (e) => {
+          const activity = btn.getAttribute("data-activity");
+          const email = btn.getAttribute("data-email");
+          if (!activity || !email) return;
+          if (!confirm("Are you sure you want to remove this participant?")) return;
+          try {
+            const response = await fetch(
+              `/activities/${activity}/unregister?email=${email}`,
+              { method: "DELETE" }
+            );
+            const result = await response.json();
+            if (response.ok) {
+              fetchActivities();
+            } else {
+              alert(result.detail || "Failed to remove participant.");
+            }
+          } catch (err) {
+            alert("Failed to remove participant.");
+          }
+        });
       });
     } catch (error) {
       activitiesList.innerHTML = "<p>Failed to load activities. Please try again later.</p>";
