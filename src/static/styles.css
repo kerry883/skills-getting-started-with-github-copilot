@@ -63,6 +63,9 @@ section h3 {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
 }
 
 .activity-card h4 {
@@ -72,6 +75,10 @@ section h3 {
 
 .activity-card p {
   margin-bottom: 8px;
+}
+
+.activity-card:hover {
+  box-shadow: 0 4px 16px rgba(26, 35, 126, 0.15);
 }
 
 .form-group {
@@ -141,4 +148,77 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+}
+
+.participants-section {
+  margin-top: 18px;
+  padding: 12px;
+  background: linear-gradient(90deg, #e3e9fc 0%, #f5f5f5 100%);
+  border-radius: 6px;
+  border: 1px solid #e0e7ff;
+  box-shadow: 0 1px 3px rgba(26, 35, 126, 0.04);
+}
+
+.participants-section.empty {
+  background: #f8fafc;
+  color: #b0b8d1;
+  text-align: center;
+  font-style: italic;
+  border-style: dashed;
+}
+
+.participants-title {
+  font-weight: 600;
+  color: #3949ab;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+.participants-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 4px 10px 4px 4px;
+  box-shadow: 0 1px 2px rgba(26, 35, 126, 0.06);
+  font-size: 15px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+}
+
+.participant-item:hover {
+  background: #e8eaf6;
+}
+
+.participant-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #3949ab;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 8px;
+  box-shadow: 0 1px 2px rgba(26, 35, 126, 0.10);
+  letter-spacing: 1px;
+}
+
+.participant-email {
+  font-family: "Fira Mono", "Consolas", monospace;
+  color: #333;
+  font-size: 14px;
+  word-break: break-all;
 }
